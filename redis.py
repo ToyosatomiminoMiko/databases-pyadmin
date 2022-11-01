@@ -3,8 +3,8 @@
 
 import redis
 r = redis.Redis(
-    password='19260817',
-    host='124.223.13.92',
+    password='',
+    host='',
     port=6379,
     charset='utf-8'
     )
