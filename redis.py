@@ -1,20 +1,26 @@
 #!/usr/bin/env python3.10
 
+
 import redis
 r = redis.Redis(
     password='19260817',
     host='124.223.13.92',
-    port='6379'
+    port=6379,
+    charset='utf-8'
     )
 
 keys = r.keys('*')
 for key in keys:
     if key == b'test':
         continue
-    all = r.hgetall(key)
+    if b'BV' not in key:
+        print("UP:", r.hgetall(key)[b'name'].decode())
+        continue
+    all_key = r.hgetall(key)
     print(
-        all[b'title'].decode(),
-        all[b'image'].decode(),
+        "VIDEO:",
+        all_key[b'title'].decode(),
+        "\n",
+        all_key[b'image'].decode(),
         )
 
-# str.encode('raw_unicode_escape').decode()
