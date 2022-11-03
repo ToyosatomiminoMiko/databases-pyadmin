@@ -8,7 +8,8 @@ r = redis.Redis(
     host='124.223.13.92',
     port=6379,
     charset='utf-8',
-    decode_responses=True
+    decode_responses=True,
+    db=0
 )
 
 keys = r.keys('*')
