@@ -2,25 +2,29 @@
 
 
 import redis
+
 r = redis.Redis(
-    password='',
-    host='',
+    password='19260817',
+    host='124.223.13.92',
     port=6379,
-    charset='utf-8'
-    )
+    charset='utf-8',
+    decode_responses=True
+)
 
 keys = r.keys('*')
 for key in keys:
-    if key == b'test':
+    if key == 'test':
         continue
-    if b'BV' not in key:
-        print("UP:", r.hgetall(key)[b'name'].decode())
+    if 'BV' not in key:
+        print("UP:", r.hgetall(key)['name'])
         continue
     all_key = r.hgetall(key)
     print(
         "VIDEO:",
-        all_key[b'title'].decode(),
+        all_key['title'],
         "\n",
-        all_key[b'image'].decode(),
-        )
-
+        all_key['image'],
+    )
+    
+    # str.decode()用于处理字符串hex
+    
