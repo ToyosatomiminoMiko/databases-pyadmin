@@ -11,21 +11,17 @@ r = redis.Redis(
     decode_responses=True,
     db=0
 )
-
+# 获取v所有键值
 keys = r.keys('*')
 for key in keys:
-    if key == 'test':
-        continue
+
     if 'BV' not in key:
-        print("UP:", r.hgetall(key)['name'])
+        print("UP:", r.hgetall(key)['name'])  # .decode()
         continue
     all_key = r.hgetall(key)
     print(
         "VIDEO:",
-        all_key['title'],
+        all_key['title'],  # .decode(),
         "\n",
-        all_key['image'],
+        all_key['image'],  # .decode(),
     )
-    
-    # str.decode()用于处理字符串hex
-    
